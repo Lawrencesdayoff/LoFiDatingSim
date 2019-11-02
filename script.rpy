@@ -1,21 +1,21 @@
-﻿define o = Character("Old Lady")
-image m = "images/map/exmap.png"
-image mr = "images/map/exmaprec.png"
-# The game starts here.
+﻿init:
+    default shape = 1
+image p = "images/phone[shape].png"
+
+screen Phone():
+    imagemap:
+        ground "images/exphone.png"
+        hotspot(460, 315, 88, 94) action If(shape == 1, SetVariable("shape", 4), SetVariable("shape", shape - 1))
+            #if shape <1:
+             #   shape = 4
+        hotspot(761, 324, 73, 69) action If(shape == 4, SetVariable("shape", 1), SetVariable("shape", shape + 1))
+           # if shape >4:
+            #    shape = 1
+    add "p"
+    
 label start:
-    call screen myFirstScreen
+    show p
+    call screen Phone
     
-label rectangle:
-    show m 
-    "this is a rectangle"
-    call screen myFirstScreen
-label pyramid:
-    show m
-    "this is a pyramid"
-    call screen myFirstScreen
-label weirdshape:
-    show m
-    "this is a weird shape."
-    call screen myFirstScreen
-    
+
     return
